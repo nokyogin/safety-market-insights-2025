@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Security Market Analysis | Complete Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    .nav-item { transition: all 0.2s ease; }
+    .nav-item:hover { background: rgba(59, 130, 246, 0.1); }
+    .nav-item.active { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; }
+    .card { background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); }
+    .stat-card { position: relative; overflow: hidden; }
+    .insight-box { border-left: 4px solid; }
+    .chart-container { position: relative; height: 300px; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    .section { display: none; }
+    .section.active { display: block; }
+  </style>
+</head>
+<body class="bg-slate-100 min-h-screen">
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-slate-200 fixed h-screen overflow-y-auto p-4">
+      <div class="mb-8 px-2">
+        <div class="flex items-center gap-3 mb-1">
+          <div class="w-9 h-9 bg-gradient-to-br from-slate-900 to-slate-700 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+          </div>
+          <div>
+            <div class="text-sm font-extrabold text-slate-900">Video Security</div>
+            <div class="text-xs text-slate-500">Market Analysis</div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 px-2"><div class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Navigation</div></div>
+      <nav id="nav-menu" class="space-y-1">
+        <button onclick="showSection('executive')" class="nav-item active w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-left" data-section="executive">📊 Executive Summary</button>
+        <button onclick="showSection('market')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-left text-slate-600" data-section="market">🌍 Market Overview</button>
+        <button onclick="showSection('technology')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-left text-slate-600" data-section="technology">💻 Technology Landscape</button>
+        <button onclick="showSection('competitive')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-left text-slate-600" data-section="competitive">👥 Competitive Analysis</button>
+        <button onclick="showSection('segments')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-left text-slate-600" data-section="segments">📈 Market Segments</button>
+        <button onclick="showSection('business')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-left text-slate-600" data-section="business">💰 Business Models</button>
+        <button onclick="showSection('france')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-left text-slate-600" data-section="france">🇫🇷 France Market</button>
+        <button onclick="showSection('challenges')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-left text-slate-600" data-section="challenges">⚡ Challenges & Opportunities</button>
+        <button onclick="showSection('outlook')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-left text-slate-600" data-section="outlook">🚀 Future Outlook</button>
+        <button onclick="showSection('sources')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-left text-slate-600" data-section="sources">📚 Sources</button>
+      </nav>
+      <div class="mt-6 p-4 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl border border-slate-200">
+        <div class="text-xs font-semibold text-slate-500 mb-2">Report Date</div>
+        <div class="text-sm font-bold text-slate-900">December 2024</div>
+        <div class="text-xs text-slate-400 mt-1">B2B to Governmental</div>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="flex-1 ml-64 p-8">
+      <!-- EXECUTIVE SUMMARY -->
+      <div id="executive" class="section active">
+        <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl p-12 mb-8 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+          <div class="relative z-10">
+            <span class="inline-block bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-xs font-semibold mb-6 border border-blue-500/30">📊 COMPLETE MARKET ANALYSIS • DECEMBER 2024</span>
+            <h1 class="text-4xl font-extrabold text-white mb-4">Video Security Market</h1>
+            <p class="text-lg text-slate-400 max-w-2xl">Comprehensive analysis covering $54-74B global market with technology trends, competitive dynamics, and strategic opportunities.</p>
+            <div class="grid grid-cols-4 gap-4 mt-10">
+              <div class="bg-white/5 rounded-xl p-5 border border-white/10"><div class="text-xs text-slate-400 mb-2">Global Market 2024</div><div class="text-3xl font-extrabold text-blue-400">$54-74B</div></div>
+              <div class="bg-white/5 rounded-xl p-5 border border-white/10"><div class="text-xs text-slate-400 mb-2">2030 Projection</div><div class="text-3xl font-extrabold text-emerald-400">$88-165B</div></div>
+              <div class="bg-white/5 rounded-xl p-5 border border-white/10"><div class="text-xs text-slate-400 mb-2">CAGR 2024-2030</div><div class="text-3xl font-extrabold text-amber-400">9-12%</div></div>
+              <div class="bg-white/5 rounded-xl p-5 border border-white/10"><div class="text-xs text-slate-400 mb-2">France CAGR</div><div class="text-3xl font-extrabold text-pink-400">13.6%</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-5 mb-8">
+          <div class="card rounded-2xl p-6 border border-slate-200"><div class="font-bold text-slate-900 mb-3">📊 Market Dynamics</div><p class="text-sm text-slate-600">AI video analytics growing at <strong>30.6% CAGR</strong>. Cloud/VSaaS at 33%. Shift from hardware (62%) to software.</p></div>
+          <div class="card rounded-2xl p-6 border border-slate-200"><div class="font-bold text-slate-900 mb-3">👥 Competitive Landscape</div><p class="text-sm text-slate-600">Hikvision & Dahua control ~40% but face restrictions. <strong>NDAA creates $10B+ opportunity</strong>.</p></div>
+          <div class="card rounded-2xl p-6 border border-slate-200"><div class="font-bold text-slate-900 mb-3">💻 Technology Trends</div><p class="text-sm text-slate-600">IP cameras: <strong>71% of revenue</strong>. Edge AI in 30% of new shipments. Hybrid architectures standard.</p></div>
+          <div class="card rounded-2xl p-6 border border-slate-200"><div class="font-bold text-slate-900 mb-3">💰 Business Models</div><p class="text-sm text-slate-600">Recurring revenue 40% of income. Software margins: <strong>70-85%</strong> vs hardware 20-35%.</p></div>
+        </div>
+        <div class="insight-box bg-blue-50 border-blue-500 rounded-r-xl p-5 mb-8"><p class="text-sm text-slate-700"><strong class="text-blue-700">KEY INSIGHT:</strong> Success requires shift from hardware to software/recurring revenue while addressing GDPR, CNIL, EU AI Act regulations.</p></div>
+        <div class="card rounded-2xl p-6 border border-slate-200"><h3 class="font-bold text-slate-900 mb-6">Market Growth Projection (2024-2030)</h3><div class="chart-container"><canvas id="growthChart"></canvas></div></div>
+      </div>
+
+      <!-- MARKET OVERVIEW -->
+      <div id="market" class="section">
+        <div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white text-lg">🌍</div><h2 class="text-xl font-extrabold text-slate-900">Market Overview & Size</h2></div>
+        <div class="grid grid-cols-5 gap-4 mb-8">
+          <div class="stat-card bg-blue-50 rounded-xl p-5 border border-blue-200"><div class="text-xs text-slate-500">Asia-Pacific</div><div class="text-2xl font-extrabold text-blue-600">$28.5B</div><div class="text-xs text-slate-400">38.5% • 10.5% CAGR</div></div>
+          <div class="stat-card bg-emerald-50 rounded-xl p-5 border border-emerald-200"><div class="text-xs text-slate-500">North America</div><div class="text-2xl font-extrabold text-emerald-600">$24.8B</div><div class="text-xs text-slate-400">33.5% • 10% CAGR</div></div>
+          <div class="stat-card bg-amber-50 rounded-xl p-5 border border-amber-200"><div class="text-xs text-slate-500">Europe</div><div class="text-2xl font-extrabold text-amber-600">$17.8B</div><div class="text-xs text-slate-400">24% • 11% CAGR</div></div>
+          <div class="stat-card bg-purple-50 rounded-xl p-5 border border-purple-200"><div class="text-xs text-slate-500">Latin America</div><div class="text-2xl font-extrabold text-purple-600">$1.9B</div><div class="text-xs text-slate-400">2.5% • 9% CAGR</div></div>
+          <div class="stat-card bg-pink-50 rounded-xl p-5 border border-pink-200"><div class="text-xs text-slate-500">MEA</div><div class="text-2xl font-extrabold text-pink-600">$1.1B</div><div class="text-xs text-slate-400">1.5% • 12.5% CAGR</div></div>
+        </div>
+        <div class="grid grid-cols-2 gap-6"><div class="card rounded-2xl p-6 border border-slate-200"><h3 class="font-bold text-slate-900 mb-6">Regional Market: 2024 vs 2030</h3><div class="chart-container"><canvas id="regionalChart"></canvas></div></div><div class="card rounded-2xl p-6 border border-slate-200"><h3 class="font-bold text-slate-900 mb-6">Regional Market Share 2024</h3><div class="chart-container"><canvas id="regionalPieChart"></canvas></div></div></div>
+      </div>
+
+      <!-- TECHNOLOGY -->
+      <div id="technology" class="section">
+        <div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white text-lg">💻</div><h2 class="text-xl font-extrabold text-slate-900">Technology & Innovation</h2></div>
+        <div class="insight-box bg-blue-50 border-blue-500 rounded-r-xl p-5 mb-8"><p class="text-sm text-slate-700"><strong class="text-blue-700">Three Shifts:</strong> (1) analog to IP, (2) on-premise to cloud, (3) embedding AI at edge.</p></div>
+        <div class="grid grid-cols-4 gap-4 mb-8">
+          <div class="stat-card bg-blue-50 rounded-xl p-5 border border-blue-200"><div class="text-xs text-slate-500">IP Camera Revenue</div><div class="text-2xl font-extrabold text-blue-600">71%</div><div class="text-xs text-emerald-600">14-16% CAGR</div></div>
+          <div class="stat-card bg-emerald-50 rounded-xl p-5 border border-emerald-200"><div class="text-xs text-slate-500">AI Analytics CAGR</div><div class="text-2xl font-extrabold text-emerald-600">30.6%</div><div class="text-xs text-slate-400">$6.5B → $28.8B</div></div>
+          <div class="stat-card bg-amber-50 rounded-xl p-5 border border-amber-200"><div class="text-xs text-slate-500">Cloud Deployments</div><div class="text-2xl font-extrabold text-amber-600">33%</div><div class="text-xs text-emerald-600">13.5% CAGR</div></div>
+          <div class="stat-card bg-purple-50 rounded-xl p-5 border border-purple-200"><div class="text-xs text-slate-500">Edge AI</div><div class="text-2xl font-extrabold text-purple-600">30%</div><div class="text-xs text-emerald-600">25-30% CAGR</div></div>
+        </div>
+        <div class="grid grid-cols-2 gap-6"><div class="card rounded-2xl p-6 border border-slate-200"><h3 class="font-bold text-slate-900 mb-6">Technology Segment Growth</h3><div class="chart-container"><canvas id="techGrowthChart"></canvas></div></div><div class="card rounded-2xl p-6 border border-slate-200"><h3 class="font-bold text-slate-900 mb-6">CAGR by Segment</h3><div class="chart-container"><canvas id="techCagrChart"></canvas></div></div></div>
+      </div>
+
+      <!-- COMPETITIVE -->
+      <div id="competitive" class="section">
+        <div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white text-lg">👥</div><h2 class="text-xl font-extrabold text-slate-900">Competitive Landscape</h2></div>
+        <div class="insight-box bg-amber-50 border-amber-500 rounded-r-xl p-5 mb-8"><p class="text-sm text-slate-700"><strong class="text-amber-700">Market Division:</strong> Chinese dominate volume, Western capture premium. 4 companies control ~50% revenues.</p></div>
+        <div class="card rounded-2xl p-6 border border-slate-200 mb-8"><h3 class="font-bold text-slate-900 mb-6">Major Competitors Revenue (2024, $B)</h3><div class="chart-container"><canvas id="competitorChart"></canvas></div></div>
+        <div class="insight-box bg-emerald-50 border-emerald-500 rounded-r-xl p-5"><p class="text-sm text-slate-700"><strong class="text-emerald-700">VMS Value:</strong> 70-85% margins vs hardware 20-35%. Market $15.8-19.4B → $44-54B by 2030.</p></div>
+      </div>
+
+      <!-- SEGMENTS -->
+      <div id="segments" class="section">
+        <div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white text-lg">📈</div><h2 class="text-xl font-extrabold text-slate-900">Market Segments</h2></div>
+        <div class="insight-box bg-blue-50 border-blue-500 rounded-r-xl p-5 mb-8"><p class="text-sm text-slate-700">Government = <strong class="text-blue-700">29% of EU purchases</strong>. 78% of smart cities include video surveillance.</p></div>
+        <div class="card rounded-2xl p-6 border border-slate-200"><h3 class="font-bold text-slate-900 mb-6">Commercial Verticals: Size & CAGR</h3><div class="chart-container"><canvas id="verticalChart"></canvas></div></div>
+      </div>
+
+      <!-- BUSINESS MODELS -->
+      <div id="business" class="section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-xl font-extrabold text-slate-900">Business Models & Revenue Dynamics</h2>
+            <p class="text-sm text-slate-500">The recurring revenue transformation</p>
+          </div>
+        </div>
+        
+        <div class="insight-box bg-amber-50 border-amber-500 rounded-r-xl p-5 mb-8">
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <p class="text-sm text-slate-700 leading-relaxed"><strong class="text-amber-700">Strategic Imperative:</strong> Hardware represented 58-62% of 2024 market revenue but is projected to decline to 50-55% by 2030 as software and services capture growth. Companies without strong recurring revenue face <strong>60-80% valuation discounts</strong> versus peers with subscription-based models.</p>
+          </div>
+        </div>
+        
+        <!-- Revenue Stats -->
+        <div class="grid grid-cols-3 gap-4 mb-8">
+          <div class="stat-card bg-gradient-to-br from-blue-50 to-blue-50/50 rounded-xl p-5 border border-blue-200">
+            <div class="text-xs text-slate-500 font-medium uppercase tracking-wide mb-1">Recurring Revenue</div>
+            <div class="text-2xl font-extrabold text-blue-600">40%</div>
+            <div class="text-xs text-slate-400">of integrator income</div>
+            <div class="mt-2 text-xs text-emerald-600 font-semibold">Up from 33% prior year</div>
+          </div>
+          <div class="stat-card bg-gradient-to-br from-emerald-50 to-emerald-50/50 rounded-xl p-5 border border-emerald-200">
+            <div class="text-xs text-slate-500 font-medium uppercase tracking-wide mb-1">Software Margins</div>
+            <div class="text-2xl font-extrabold text-emerald-600">70-85%</div>
+            <div class="text-xs text-slate-400">Gross margin</div>
+            <div class="mt-2 text-xs text-slate-500">vs Hardware: 20-35%</div>
+          </div>
+          <div class="stat-card bg-gradient-to-br from-purple-50 to-purple-50/50 rounded-xl p-5 border border-purple-200">
+            <div class="text-xs text-slate-500 font-medium uppercase tracking-wide mb-1">Valuation Multiple</div>
+            <div class="text-2xl font-extrabold text-purple-600">3-5x ARR</div>
+            <div class="text-xs text-slate-400">Strong RMR companies</div>
+            <div class="mt-2 text-xs text-slate-500">vs 0.5-1.5x for project-based</div>
+          </div>
+        </div>
+        
+        <!-- Revenue Chart -->
+        <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm mb-8">
+          <h3 class="font-bold text-slate-900 mb-1">Revenue Mix Evolution & Gross Margins</h3>
+          <p class="text-xs text-slate-500 mb-6">2024 vs 2030 projected composition with margin comparison</p>
+          <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+          </div>
+        </div>
+        
+        <!-- Revenue Table -->
+        <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <h3 class="font-bold text-slate-900 mb-1">Revenue Model Comparison</h3>
+          <p class="text-xs text-slate-500 mb-4">Margin structures and strategic positioning</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-slate-50">
+                  <th class="text-left px-4 py-3 font-semibold text-slate-600 uppercase text-xs tracking-wide">Revenue Type</th>
+                  <th class="text-left px-4 py-3 font-semibold text-slate-600 uppercase text-xs tracking-wide">2024 Mix</th>
+                  <th class="text-left px-4 py-3 font-semibold text-slate-600 uppercase text-xs tracking-wide">2030 Projection</th>
+                  <th class="text-left px-4 py-3 font-semibold text-slate-600 uppercase text-xs tracking-wide">Gross Margin</th>
+                  <th class="text-left px-4 py-3 font-semibold text-slate-600 uppercase text-xs tracking-wide">Strategic Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-slate-100">
+                  <td class="px-4 py-3 font-medium text-slate-900">Hardware Sales</td>
+                  <td class="px-4 py-3 text-slate-600">58-62%</td>
+                  <td class="px-4 py-3 text-slate-600">50-55%</td>
+                  <td class="px-4 py-3"><span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-semibold">20-35%</span></td>
+                  <td class="px-4 py-3 text-slate-600">Declining margins; Commoditization pressure</td>
+                </tr>
+                <tr class="border-b border-slate-100 bg-slate-50/50">
+                  <td class="px-4 py-3 font-medium text-slate-900">Software Licensing</td>
+                  <td class="px-4 py-3 text-slate-600">18-20%</td>
+                  <td class="px-4 py-3 text-slate-600">25-28%</td>
+                  <td class="px-4 py-3"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">70-85%</span></td>
+                  <td class="px-4 py-3 text-slate-600">High margin; Customer stickiness</td>
+                </tr>
+                <tr class="border-b border-slate-100">
+                  <td class="px-4 py-3 font-medium text-slate-900">Cloud/VSaaS</td>
+                  <td class="px-4 py-3 text-slate-600">5-8%</td>
+                  <td class="px-4 py-3 text-slate-600">12-15%</td>
+                  <td class="px-4 py-3"><span class="px-2 py-1 bg-amber-100 text-amber-700 rounded text-xs font-semibold">40-60%</span></td>
+                  <td class="px-4 py-3 text-slate-600">Recurring revenue; Scalable model</td>
+                </tr>
+                <tr class="border-b border-slate-100 bg-slate-50/50">
+                  <td class="px-4 py-3 font-medium text-slate-900">Professional Services</td>
+                  <td class="px-4 py-3 text-slate-600">10-12%</td>
+                  <td class="px-4 py-3 text-slate-600">10-12%</td>
+                  <td class="px-4 py-3"><span class="px-2 py-1 bg-amber-100 text-amber-700 rounded text-xs font-semibold">35-45%</span></td>
+                  <td class="px-4 py-3 text-slate-600">Stable margins; Relationship building</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium text-slate-900">Recurring Maintenance</td>
+                  <td class="px-4 py-3 text-slate-600">8-10%</td>
+                  <td class="px-4 py-3 text-slate-600">10-12%</td>
+                  <td class="px-4 py-3"><span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">65-75%</span></td>
+                  <td class="px-4 py-3 text-slate-600">Predictable revenue; Customer retention</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <!-- FRANCE MARKET -->
+      <div id="france" class="section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-xl font-extrabold text-slate-900">France Market Entry Requirements</h2>
+            <p class="text-sm text-slate-500">Europe's fastest-growing video surveillance market</p>
+          </div>
+        </div>
+        
+        <!-- France Hero -->
+        <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-8 mb-8 text-white">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+            </div>
+            <div>
+              <div class="text-xl font-extrabold">France: Europe's Growth Leader</div>
+              <div class="text-sm opacity-80">13.6% CAGR - Highest in Europe</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 gap-4">
+            <div class="bg-white/10 rounded-xl p-4 text-center">
+              <div class="text-xs opacity-70 mb-1">Market Size 2024</div>
+              <div class="text-2xl font-extrabold">$1.6-2.2B</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-4 text-center">
+              <div class="text-xs opacity-70 mb-1">Projected 2030</div>
+              <div class="text-2xl font-extrabold">$2.3-4.6B</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-4 text-center">
+              <div class="text-xs opacity-70 mb-1">Public Cameras</div>
+              <div class="text-2xl font-extrabold">902,000+</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-4 text-center">
+              <div class="text-xs opacity-70 mb-1">Municipalities</div>
+              <div class="text-2xl font-extrabold">6,000+</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Growth Drivers -->
+        <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm mb-8">
+          <h3 class="font-bold text-slate-900 mb-4">Key Growth Drivers in France</h3>
+          <div class="grid grid-cols-5 gap-4">
+            <div class="text-center p-4 bg-slate-50 rounded-xl">
+              <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+              </div>
+              <div class="text-xs font-bold text-slate-900 mb-1">Paris 2024 Olympics</div>
+              <div class="text-xs text-slate-500">Infrastructure investments</div>
+            </div>
+            <div class="text-center p-4 bg-slate-50 rounded-xl">
+              <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              </div>
+              <div class="text-xs font-bold text-slate-900 mb-1">March 2023 AI Legislation</div>
+              <div class="text-xs text-slate-500">Algorithmic detection enabled</div>
+            </div>
+            <div class="text-center p-4 bg-slate-50 rounded-xl">
+              <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+              </div>
+              <div class="text-xs font-bold text-slate-900 mb-1">Smart City Initiatives</div>
+              <div class="text-xs text-slate-500">Paris, Lyon, Marseille</div>
+            </div>
+            <div class="text-center p-4 bg-slate-50 rounded-xl">
+              <div class="w-10 h-10 bg-red-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              </div>
+              <div class="text-xs font-bold text-slate-900 mb-1">Security Priorities</div>
+              <div class="text-xs text-slate-500">Terrorism response</div>
+            </div>
+            <div class="text-center p-4 bg-slate-50 rounded-xl">
+              <div class="w-10 h-10 bg-purple-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              </div>
+              <div class="text-xs font-bold text-slate-900 mb-1">CNIL Framework</div>
+              <div class="text-xs text-slate-500">GDPR clarity</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- CNIL Compliance -->
+        <div class="insight-box bg-red-50 border-red-500 rounded-r-xl p-5 mb-6">
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <p class="text-sm text-slate-700 leading-relaxed"><strong class="text-red-700">CNIL Compliance:</strong> The French regulatory environment is among the most stringent in Europe. Key requirements include: <strong>Prefectural authorization</strong> for public spaces, <strong>maximum 30-day data retention</strong>, <strong>mandatory signage with pictograms</strong>, and <strong>DPIA for large-scale monitoring</strong>. Non-compliance can result in fines up to €20M or 4% of revenue.</p>
+          </div>
+        </div>
+        
+        <!-- Channel Partners -->
+        <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <h3 class="font-bold text-slate-900 mb-1">French Channel Partners</h3>
+          <p class="text-xs text-slate-500 mb-4">Key partners and engagement strategies</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-slate-50">
+                  <th class="text-left px-4 py-3 font-semibold text-slate-600 uppercase text-xs tracking-wide">Partner Type</th>
+                  <th class="text-left px-4 py-3 font-semibold text-slate-600 uppercase text-xs tracking-wide">Key Players</th>
+                  <th class="text-left px-4 py-3 font-semibold text-slate-600 uppercase text-xs tracking-wide">Role & Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-slate-100">
+                  <td class="px-4 py-3 font-medium text-slate-900">National System Integrators</td>
+                  <td class="px-4 py-3 text-slate-600">DEF Sûreté, PERIN Sécurité, SPIE Service PSR</td>
+                  <td class="px-4 py-3 text-slate-600">Large project execution; APSAD certified; Government relationships</td>
+                </tr>
+                <tr class="border-b border-slate-100 bg-slate-50/50">
+                  <td class="px-4 py-3 font-medium text-slate-900">Regional Integrators</td>
+                  <td class="px-4 py-3 text-slate-600">TEB Vidéo & Sécurité, ISO Sécurité</td>
+                  <td class="px-4 py-3 text-slate-600">Regional coverage; Local relationships; Mid-market focus</td>
+                </tr>
+                <tr class="border-b border-slate-100">
+                  <td class="px-4 py-3 font-medium text-slate-900">Distribution Partners</td>
+                  <td class="px-4 py-3 text-slate-600">AASSET Security, Euromip</td>
+                  <td class="px-4 py-3 text-slate-600">Product availability; Technical support; Credit terms</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium text-slate-900">Technology Partners</td>
+                  <td class="px-4 py-3 text-slate-600">Videtics, Wintics, ChapsVision</td>
+                  <td class="px-4 py-3 text-slate-600">AI analytics; Software integration; Innovation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <!-- CHALLENGES & OPPORTUNITIES -->
+      <div id="challenges" class="section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-xl font-extrabold text-slate-900">Market Challenges & Strategic Opportunities</h2>
+            <p class="text-sm text-slate-500">Geopolitical disruption, cybersecurity, and regulatory landscape</p>
+          </div>
+        </div>
+        
+        <div class="insight-box bg-amber-50 border-amber-500 rounded-r-xl p-5 mb-8">
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <p class="text-sm text-slate-700 leading-relaxed"><strong class="text-amber-700">$10+ Billion Opportunity:</strong> Western governments restricting Chinese equipment creates an estimated <strong>$10+ billion addressable market</strong> in compliance-sensitive segments. NDAA-compliant vendors (Axis, Hanwha, Motorola/Avigilon, i-PRO) are positioned to capture this displacement demand at premium pricing with superior margins.</p>
+          </div>
+        </div>
+        
+        <!-- NDAA Displacement Table -->
+        <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm mb-8">
+          <h3 class="font-bold text-slate-900 mb-1">Geopolitical Restrictions by Region</h3>
+          <p class="text-xs text-slate-500 mb-4">Creating displacement opportunities for Western vendors</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-slate-50">
+                  <th class="text-left px-4 py-3 font-semibold text-slate-600 uppercase text-xs tracking-wide">Region/Country</th>
+                  <th class="text-left px-4 py-3 font-semibold text-slate-600 uppercase text-xs tracking-wide">Restrictions Implemented</th>
+                  <th class="text-left px-4 py-3 font-semibold text-slate-600 uppercase text-xs tracking-wide">Market Impact</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-slate-100">
+                  <td class="px-4 py-3 font-medium text-slate-900">United States</td>
+                  <td class="px-4 py-3 text-slate-600">NDAA Section 889; FCC import ban (Nov 2022)</td>
+                  <td class="px-4 py-3"><span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-semibold">$5-8B addressable</span></td>
+                </tr>
+                <tr class="border-b border-slate-100 bg-slate-50/50">
+                  <td class="px-4 py-3 font-medium text-slate-900">United Kingdom</td>
+                  <td class="px-4 py-3 text-slate-600">Removal from sensitive sites (June 2023)</td>
+                  <td class="px-4 py-3"><span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-semibold">$2-3B over 5 years</span></td>
+                </tr>
+                <tr class="border-b border-slate-100">
+                  <td class="px-4 py-3 font-medium text-slate-900">Canada</td>
+                  <td class="px-4 py-3 text-slate-600">Hikvision shutdown order (2024)</td>
+                  <td class="px-4 py-3"><span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-semibold">$500M-1B</span></td>
+                </tr>
+                <tr class="border-b border-slate-100 bg-slate-50/50">
+                  <td class="px-4 py-3 font-medium text-slate-900">Australia</td>
+                  <td class="px-4 py-3 text-slate-600">Removal from federal offices (2023)</td>
+                  <td class="px-4 py-3"><span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-semibold">$300-500M</span></td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium text-slate-900">Lithuania</td>
+                  <td class="px-4 py-3 text-slate-600">National government ban</td>
+                  <td class="px-4 py-3"><span class="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-semibold">Complete replacement</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- Cybersecurity Best Practices -->
+        <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <h3 class="font-bold text-slate-900 mb-4">Cybersecurity Best Practices</h3>
+          <div class="grid grid-cols-5 gap-4">
+            <div class="text-center p-4 bg-blue-50 rounded-xl border border-blue-200">
+              <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              </div>
+              <div class="text-xs font-semibold text-slate-900">End-to-end encryption (TLS/HTTPS)</div>
+            </div>
+            <div class="text-center p-4 bg-emerald-50 rounded-xl border border-emerald-200">
+              <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+              </div>
+              <div class="text-xs font-semibold text-slate-900">VLAN segmentation</div>
+            </div>
+            <div class="text-center p-4 bg-amber-50 rounded-xl border border-amber-200">
+              <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              </div>
+              <div class="text-xs font-semibold text-slate-900">Signed firmware & secure boot</div>
+            </div>
+            <div class="text-center p-4 bg-purple-50 rounded-xl border border-purple-200">
+              <div class="w-10 h-10 bg-purple-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
+              </div>
+              <div class="text-xs font-semibold text-slate-900">Zero-trust architecture</div>
+            </div>
+            <div class="text-center p-4 bg-pink-50 rounded-xl border border-pink-200">
+              <div class="w-10 h-10 bg-pink-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+              </div>
+              <div class="text-xs font-semibold text-slate-900">SOC2 Type II audits</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- FUTURE OUTLOOK -->
+      <div id="outlook" class="section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-xl font-extrabold text-slate-900">Future Outlook & Recommendations</h2>
+            <p class="text-sm text-slate-500">Market consolidation and strategic imperatives</p>
+          </div>
+        </div>
+        
+        <div class="insight-box bg-blue-50 border-blue-500 rounded-r-xl p-5 mb-8">
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <p class="text-sm text-slate-700 leading-relaxed"><strong class="text-blue-700">Market Consolidation:</strong> The video surveillance industry is experiencing significant consolidation, with <strong>24 M&A transactions</strong> recorded between September 2023 and August 2025 and <strong>$3.8 billion invested</strong>. Security solutions sector valuations average <strong>13x EV/EBITDA</strong> with median deal values increasing 105% YoY.</p>
+          </div>
+        </div>
+        
+        <!-- Strategic Recommendations -->
+        <div class="grid grid-cols-2 gap-5 mb-8">
+          <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white font-bold">1</div>
+              <span class="font-bold text-slate-900">Software-First Business Model</span>
+            </div>
+            <ul class="text-sm text-slate-600 space-y-2 mb-4">
+              <li class="flex items-start gap-2"><span class="text-blue-500 mt-1">•</span>Develop cloud-native VMS or partner with leading platforms</li>
+              <li class="flex items-start gap-2"><span class="text-blue-500 mt-1">•</span>Build AI analytics capabilities as standard features</li>
+              <li class="flex items-start gap-2"><span class="text-blue-500 mt-1">•</span>Target 40%+ recurring revenue within 3 years</li>
+            </ul>
+            <div class="bg-emerald-50 rounded-lg p-3 text-xs text-emerald-700"><strong>Outcome:</strong> Higher valuations (3-5x ARR); Margin expansion to 60%+</div>
+          </div>
+          
+          <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white font-bold">2</div>
+              <span class="font-bold text-slate-900">Compliance Positioning</span>
+            </div>
+            <ul class="text-sm text-slate-600 space-y-2 mb-4">
+              <li class="flex items-start gap-2"><span class="text-emerald-500 mt-1">•</span>NDAA compliance for Western markets</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-500 mt-1">•</span>GDPR/CNIL pre-configured settings</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-500 mt-1">•</span>EU AI Act alignment</li>
+            </ul>
+            <div class="bg-emerald-50 rounded-lg p-3 text-xs text-emerald-700"><strong>Outcome:</strong> Access to government segments; Premium pricing power</div>
+          </div>
+          
+          <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center text-white font-bold">3</div>
+              <span class="font-bold text-slate-900">France Market Entry</span>
+            </div>
+            <ul class="text-sm text-slate-600 space-y-2 mb-4">
+              <li class="flex items-start gap-2"><span class="text-amber-500 mt-1">•</span>AN2V membership and trade show presence</li>
+              <li class="flex items-start gap-2"><span class="text-amber-500 mt-1">•</span>APSAD-certified integrator partnerships</li>
+              <li class="flex items-start gap-2"><span class="text-amber-500 mt-1">•</span>French language localization (full)</li>
+            </ul>
+            <div class="bg-emerald-50 rounded-lg p-3 text-xs text-emerald-700"><strong>Outcome:</strong> 13.6% CAGR market exposure; Government project qualification</div>
+          </div>
+          
+          <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-purple-500 rounded-xl flex items-center justify-center text-white font-bold">4</div>
+              <span class="font-bold text-slate-900">Technology Differentiation</span>
+            </div>
+            <ul class="text-sm text-slate-600 space-y-2 mb-4">
+              <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">•</span>Edge AI processing (on-camera analytics)</li>
+              <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">•</span>Hybrid edge-cloud architecture</li>
+              <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">•</span>Open API ecosystem</li>
+            </ul>
+            <div class="bg-emerald-50 rounded-lg p-3 text-xs text-emerald-700"><strong>Outcome:</strong> Bandwidth efficiency; Reduced cloud costs; Higher close rates</div>
+          </div>
+        </div>
+        
+        <!-- Conclusion -->
+        <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 text-white">
+          <h3 class="text-xl font-extrabold mb-6">Three Strategic Imperatives</h3>
+          <div class="grid grid-cols-3 gap-6">
+            <div class="bg-white/10 rounded-xl p-5">
+              <div class="w-12 h-12 bg-blue-500/30 rounded-xl flex items-center justify-center mb-4 text-xl font-bold text-blue-400">1</div>
+              <div class="font-bold mb-2">Software & Services Capture Growth</div>
+              <div class="text-sm opacity-80">Software growing at 2-3x hardware rates with 70-85% margins vs 20-35%. VSaaS will capture 20-25% by 2030.</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-5">
+              <div class="w-12 h-12 bg-emerald-500/30 rounded-xl flex items-center justify-center mb-4 text-xl font-bold text-emerald-400">2</div>
+              <div class="font-bold mb-2">Compliance Creates Advantage</div>
+              <div class="text-sm opacity-80">Geopolitical restrictions creating $10+ billion displacement opportunity for NDAA-compliant vendors.</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-5">
+              <div class="w-12 h-12 bg-pink-500/30 rounded-xl flex items-center justify-center mb-4 text-xl font-bold text-pink-400">3</div>
+              <div class="font-bold mb-2">France Offers Asymmetric Opportunity</div>
+              <div class="text-sm opacity-80">Europe's fastest-growing market at 13.6% CAGR with preference for 'sovereign' security solutions.</div>
+            </div>
+          </div>
+          
+          <!-- Summary Stats -->
+          <div class="mt-8 p-6 bg-white/5 rounded-xl grid grid-cols-6 gap-4 text-center">
+            <div>
+              <div class="text-xs opacity-60 mb-1">Market 2024</div>
+              <div class="text-lg font-extrabold text-blue-400">$54-74B</div>
+            </div>
+            <div>
+              <div class="text-xs opacity-60 mb-1">2030 Projection</div>
+              <div class="text-lg font-extrabold text-emerald-400">$88-165B</div>
+            </div>
+            <div>
+              <div class="text-xs opacity-60 mb-1">AI Analytics CAGR</div>
+              <div class="text-lg font-extrabold text-amber-400">30.6%</div>
+            </div>
+            <div>
+              <div class="text-xs opacity-60 mb-1">France CAGR</div>
+              <div class="text-lg font-extrabold text-pink-400">13.6%</div>
+            </div>
+            <div>
+              <div class="text-xs opacity-60 mb-1">NDAA Displacement</div>
+              <div class="text-lg font-extrabold text-red-400">$10B+</div>
+            </div>
+            <div>
+              <div class="text-xs opacity-60 mb-1">Software Margins</div>
+              <div class="text-lg font-extrabold text-purple-400">70-85%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- SOURCES -->
+      <div id="sources" class="section">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-xl font-extrabold text-slate-900">Sources & References</h2>
+            <p class="text-sm text-slate-500">Authoritative industry research, regulatory documentation, and primary sources</p>
+          </div>
+        </div>
+        
+        <div class="insight-box bg-blue-50 border-blue-500 rounded-r-xl p-5 mb-8">
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <p class="text-sm text-slate-700 leading-relaxed">This market analysis draws from authoritative industry research, regulatory documentation, and primary sources to ensure accuracy and reliability. All market sizing, growth projections, and competitive intelligence have been cross-referenced across multiple sources where available.</p>
+          </div>
+        </div>
+        
+        <!-- Market Research Sources -->
+        <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm mb-6">
+          <h3 class="font-bold text-slate-900 mb-4">Market Research & Industry Analysis</h3>
+          <div class="space-y-3">
+            <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-lg">
+              <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <div class="flex-1">
+                <div class="font-semibold text-slate-900 text-sm">Grand View Research</div>
+                <div class="text-xs text-slate-500">Video Surveillance Market Size, Share & Trends Analysis Report (2024)</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-lg">
+              <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <div class="flex-1">
+                <div class="font-semibold text-slate-900 text-sm">MarketsandMarkets</div>
+                <div class="text-xs text-slate-500">Video Surveillance Market Size, Share, Industry Report, 2024-2029</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-lg">
+              <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <div class="flex-1">
+                <div class="font-semibold text-slate-900 text-sm">Mordor Intelligence</div>
+                <div class="text-xs text-slate-500">Video Surveillance Market Size, Share Analysis, Outlook 2025-2030</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-lg">
+              <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              </div>
+              <div class="flex-1">
+                <div class="font-semibold text-slate-900 text-sm">Emergen Research</div>
+                <div class="text-xs text-slate-500">Video Surveillance Market Trend | Industry Forecast 2024-2034</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Regulatory Sources -->
+        <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm mb-6">
+          <h3 class="font-bold text-slate-900 mb-4">Regulatory & Compliance Sources</h3>
+          <div class="space-y-3">
+            <div class="flex items-center gap-4 p-3 bg-red-50 rounded-lg">
+              <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+              </div>
+              <div class="flex-1">
+                <div class="font-semibold text-slate-900 text-sm">CNIL (Commission Nationale de l'Informatique et des Libertés)</div>
+                <div class="text-xs text-slate-500">La vidéoprotection - French data protection authority guidelines (2024)</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-3 bg-red-50 rounded-lg">
+              <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+              </div>
+              <div class="flex-1">
+                <div class="font-semibold text-slate-900 text-sm">Ministère de l'Intérieur</div>
+                <div class="text-xs text-slate-500">Dispositifs de captation vidéos : l'État vous informe (2024)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Industry Sources -->
+        <div class="card rounded-2xl p-6 border border-slate-200 shadow-sm mb-6">
+          <h3 class="font-bold text-slate-900 mb-4">Industry & Competitive Intelligence</h3>
+          <div class="space-y-3">
+            <div class="flex items-center gap-4 p-3 bg-emerald-50 rounded-lg">
+              <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+              </div>
+              <div class="flex-1">
+                <div class="font-semibold text-slate-900 text-sm">IFSEC Insider</div>
+                <div class="text-xs text-slate-500">Genetec Unseats Milestone as World's Biggest VMS Vendor (2024)</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-3 bg-emerald-50 rounded-lg">
+              <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+              </div>
+              <div class="flex-1">
+                <div class="font-semibold text-slate-900 text-sm">ICSEE</div>
+                <div class="text-xs text-slate-500">2024 Biggest Security Camera Companies</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Disclaimer -->
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-5">
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <div>
+              <div class="font-semibold text-amber-800 text-sm mb-1">Disclaimer</div>
+              <p class="text-xs text-amber-700 leading-relaxed">This market analysis is provided for informational purposes only and represents a synthesis of publicly available information as of December 2024. Market conditions, competitive dynamics, and regulatory frameworks are subject to change. Readers should conduct their own due diligence and consult with qualified advisors before making business decisions based on this analysis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <div class="mt-12 pt-6 border-t border-slate-200 text-center text-slate-400 text-xs">
+        <p class="mb-2">Video Security Market Analysis • Complete Market Report • B2B to Governmental Segments</p>
+        <p>Data sourced from Grand View Research, MarketsandMarkets, Mordor Intelligence, CNIL, AN2V | Report Date: December 2024</p>
+      </div>
+    </main>
+  </div>
+  
+  <script>
+    // Navigation
+    function showSection(sectionId) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => {
+        n.classList.remove('active');
+        n.classList.add('text-slate-600');
+      });
+      document.getElementById(sectionId).classList.add('active');
+      const navItem = document.querySelector(`[data-section="${sectionId}"]`);
+      navItem.classList.add('active');
+      navItem.classList.remove('text-slate-600');
+      initCharts();
+    }
+    
+    // Charts
+    function initCharts() {
+      // Growth Chart
+      const growthCtx = document.getElementById('growthChart');
+      if (growthCtx && !growthCtx.chart) {
+        growthCtx.chart = new Chart(growthCtx, {
+          type: 'line',
+          data: {
+            labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030'],
+            datasets: [{
+              label: 'Global Market ($B)',
+              data: [64, 72, 81, 91, 102, 114, 127],
+              borderColor: '#3b82f6',
+              backgroundColor: 'rgba(59, 130, 246, 0.1)',
+              fill: true,
+              tension: 0.4
+            }, {
+              label: 'AI Analytics ($B)',
+              data: [6.5, 8.5, 11.1, 14.5, 18.9, 24.7, 28.8],
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16, 185, 129, 0.1)',
+              fill: true,
+              tension: 0.4
+            }, {
+              label: 'VSaaS ($B)',
+              data: [6, 7, 8.2, 9.5, 11, 12.2, 13.5],
+              borderColor: '#f59e0b',
+              backgroundColor: 'rgba(245, 158, 11, 0.1)',
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+        });
+      }
+      
+      // Regional Chart
+      const regionalCtx = document.getElementById('regionalChart');
+      if (regionalCtx && !regionalCtx.chart) {
+        regionalCtx.chart = new Chart(regionalCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Asia-Pacific', 'North America', 'Europe', 'Latin America', 'MEA'],
+            datasets: [{
+              label: '2024',
+              data: [28.5, 24.8, 17.8, 1.9, 1.1],
+              backgroundColor: '#64748b'
+            }, {
+              label: '2030',
+              data: [56.5, 48, 46, 3.5, 2.75],
+              backgroundColor: '#3b82f6'
+            }]
+          },
+          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+        });
+      }
+      
+      // Regional Pie Chart
+      const regionalPieCtx = document.getElementById('regionalPieChart');
+      if (regionalPieCtx && !regionalPieCtx.chart) {
+        regionalPieCtx.chart = new Chart(regionalPieCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Asia-Pacific', 'North America', 'Europe', 'Latin America', 'MEA'],
+            datasets: [{
+              data: [38.5, 33.5, 24, 2.5, 1.5],
+              backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899']
+            }]
+          },
+          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+        });
+      }
+      
+      // Tech Growth Chart
+      const techGrowthCtx = document.getElementById('techGrowthChart');
+      if (techGrowthCtx && !techGrowthCtx.chart) {
+        techGrowthCtx.chart = new Chart(techGrowthCtx, {
+          type: 'bar',
+          data: {
+            labels: ['IP Cameras', 'AI Analytics', 'Cloud/VSaaS', 'Video Analytics', 'Body-Worn'],
+            datasets: [{
+              label: '2024 ($B)',
+              data: [45, 6.5, 6.05, 12.7, 7.3],
+              backgroundColor: '#64748b'
+            }, {
+              label: '2030 ($B)',
+              data: [102.5, 28.8, 13, 43.4, 28.2],
+              backgroundColor: '#3b82f6'
+            }]
+          },
+          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+        });
+      }
+      
+      // Tech CAGR Chart
+      const techCagrCtx = document.getElementById('techCagrChart');
+      if (techCagrCtx && !techCagrCtx.chart) {
+        techCagrCtx.chart = new Chart(techCagrCtx, {
+          type: 'bar',
+          data: {
+            labels: ['AI Analytics', 'Video Analytics', 'Cloud/VSaaS', 'IP Cameras', 'Body-Worn'],
+            datasets: [{
+              label: 'CAGR %',
+              data: [30.6, 20.5, 15.5, 15, 14.1],
+              backgroundColor: ['#10b981', '#10b981', '#3b82f6', '#3b82f6', '#f59e0b']
+            }]
+          },
+          options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+      }
+      
+      // Competitor Chart
+      const competitorCtx = document.getElementById('competitorChart');
+      if (competitorCtx && !competitorCtx.chart) {
+        competitorCtx.chart = new Chart(competitorCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Hikvision', 'Dahua', 'Axis', 'Hanwha', 'Bosch', 'Milestone'],
+            datasets: [{
+              label: 'Revenue ($B)',
+              data: [12.84, 4.5, 2.27, 1.5, 1.2, 0.28],
+              backgroundColor: ['#ef4444', '#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6']
+            }]
+          },
+          options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+      }
+      
+      // Vertical Chart
+      const verticalCtx = document.getElementById('verticalChart');
+      if (verticalCtx && !verticalCtx.chart) {
+        verticalCtx.chart = new Chart(verticalCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Retail', 'Casino', 'Healthcare', 'Banking', 'Education', 'Logistics'],
+            datasets: [{
+              label: 'Market Size ($B)',
+              data: [25, 6.4, 4.5, 3.8, 3.5, 2.34],
+              backgroundColor: '#3b82f6',
+              yAxisID: 'y'
+            }, {
+              label: 'CAGR %',
+              data: [7.5, 16.4, 14, 9, 17.5, 16.5],
+              backgroundColor: '#10b981',
+              yAxisID: 'y1'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { position: 'bottom' } },
+            scales: {
+              y: { type: 'linear', position: 'left' },
+              y1: { type: 'linear', position: 'right', grid: { drawOnChartArea: false } }
+            }
+          }
+        });
+      }
+      
+      // Revenue Chart
+      const revenueCtx = document.getElementById('revenueChart');
+      if (revenueCtx && !revenueCtx.chart) {
+        revenueCtx.chart = new Chart(revenueCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Hardware', 'Software', 'Cloud/VSaaS', 'Services', 'Maintenance'],
+            datasets: [{
+              label: '2024 Mix %',
+              data: [60, 19, 6.5, 11, 9],
+              backgroundColor: '#64748b'
+            }, {
+              label: '2030 Mix %',
+              data: [52.5, 26.5, 13.5, 11, 11],
+              backgroundColor: '#3b82f6'
+            }, {
+              label: 'Gross Margin %',
+              data: [27.5, 77.5, 50, 40, 70],
+              backgroundColor: '#10b981'
+            }]
+          },
+          options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+        });
+      }
+    }
+    
+    // Initialize charts on load
+    document.addEventListener('DOMContentLoaded', initCharts);
+  </script>
+</body>
+</html>
